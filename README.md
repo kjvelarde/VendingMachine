@@ -16,12 +16,12 @@ Jquery 2.x
 Angular 1.x
 
 #### Functions: 
-changeMode: change mode between 'Normal' and 'Exact Change Only'
-returnCoins: Retrieve inserted coins when running on normal mode
-selectProduct(arg:product): handle product vending
-insertCoin: handle coin insertion (reject pennies)
-takeChange: take change out of the vending machine
-takeProduct: take product off the vending machine
+* changeMode: change mode between 'Normal' and 'Exact Change Only'
+* returnCoins: Retrieve inserted coins when running on normal mode
+* selectProduct(arg:product): handle product vending
+* insertCoin: handle coin insertion (reject pennies)
+* takeChange: take change out of the vending machine
+* takeProduct: take product off the vending machine
 
 ##### License
 
