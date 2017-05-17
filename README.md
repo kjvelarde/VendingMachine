@@ -24,11 +24,11 @@ Angular 1.x
 * takeProduct: take product off the vending machine
 
 #### Testing:
-npm install -g karma
-npm install -g jasmine-core
-npm install --- To install dependencies
+npm install -g karma  
+npm install -g jasmine-core  
+npm install --- To install dependencies  
 
-execute 'karma start' to execute test cases inside js files in test folder
+ execute 'karma start' to execute test cases inside js files in test folder
 
 ##### License
 
