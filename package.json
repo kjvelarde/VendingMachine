@@ -1,0 +1,34 @@
+{
+  "name": "kjvelardevendingmachine",
+  "version": "1.0.0",
+  "description": "kata",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjvelarde/VendingMachine.git"
+  },
+  "keywords": [
+    "kata",
+    "vending",
+    "machine"
+  ],
+  "author": "Karl James Velarde",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kjvelarde/VendingMachine/issues"
+  },
+  "homepage": "https://github.com/kjvelarde/VendingMachine#readme",
+  "devDependencies": {
+    "angular": "^1.6.4",
+    "angular-mocks": "^1.6.4",
+    "install": "^0.10.1",
+    "jasmine-core": "^2.6.1",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-jasmine": "^1.1.0",
+    "npm": "^4.6.1"
+  }
+}
