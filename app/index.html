@@ -1,135 +1,143 @@
 <!doctype html>
 <html lang="en" ng-app="app">
+
 <head>
     <meta charset="utf-8">
     <title>KJVelarde Vending Machine</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-	<script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
+
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
 
-	<style>
-		.pointer{
-			cursor: pointer;
-		}
-	</style>
+
 </head>
+
 <body ng-controller="ctrl">
 
-<header>
-    <h1 class="text-center">Vending Machine <span class="label label-default pointer" ng-click="changeMode()">{{mode}}</span></h1>
-</header>
-
-
-    <div class="container">
-		<div class="row">
-			<div class="col-md-offset-2 col-md-8">
-				<div class="panel panel-primary">
-					<div class="panel-body"  style="background: lightcyan;">
-						<div class="col-md-8 col-xs-6">
-
-							<div ng-repeat="product in products">
-<div class="col-md-4">
-	<div class="panel panel-default">
-		<div class="panel-heading text-center">
-			{{product.Name}} ({{product.Quantity}})
-		</div>
-		<div class="panel-body">
-			<img class="center center-block" src="{{product.Image}}" width="30" height="30"/>
-		</div>
-		<div class="panel-footer">
-			<span ng-if="product.Quantity > 0" class="btn btn-default center-block" ng-click="selectProduct(product)">{{product.Price  | currency}}</span>
-			<span ng-if="product.Quantity < 1" class="label label-danger center-block">SOLD OUT</span>
-		</div>
-	</div>
-
-</div>
-							</div>
-						</div>
-						<div class="col-xs-6 col-md-4">
-<div class="panel panel-primary">
-	<div class="panel-body">
-		<div class="row">
-			<div class="text-center" style="background: #333333; color:white; margin: 10px;">
-				<!-- makes sure message from vending machine is always upper case-->
-				{{statusMessage | uppercase}}
-			</div>
-		</div>
-		<div class="row" ng-if="!isExactChangeOnly">
-			<div class="col-md-4 col-md-offset-8">
-				<div class="label label-warning pointer" ng-click="returnCoins()">Return</div>
-			</div>
-
-		</div>
-		<hr>
-		<div class="row">
-			<div class="col-md-3">
-				<img class="pointer" src="http://vignette4.wikia.nocookie.net/uncyclopedia/images/a/ab/Penny.png/revision/latest?cb=20080212035614" width="15" height="15" ng-click="insertCoin(.01)">
-			</div>
-			<div class="col-md-3">
-				<img class="pointer" src="http://www.thecoinspot.com/5c/1867%20Five%20Cents%20Type%201,%20No%20Rays%20Rev.png" width="18" height="18" ng-click="insertCoin(.05)">
-			</div>
-			<div class="col-md-3">
-				<img class="pointer" src="https://upload.wikimedia.org/wikipedia/commons/1/17/2005_Dime_Obv_Unc_P.png" width="20" height="20" ng-click="insertCoin(.10)">
-			</div>
-			<div class="col-md-3">
-				<img class="pointer" src="https://upload.wikimedia.org/wikipedia/commons/4/44/2014_ATB_Quarter_Obv.png" width="30" height="30" ng-click="insertCoin(.25)">
-			</div>
-		</div>
-	</div>
-</div>
-							<div ng-if="changeAmount > 0" class="row">
-							<div class="col-md-6">
-								Change: {{changeAmount | currency}}
-							</div>
-								<div class="col-md-6">
-									<div class="btn btn-default" ng-click="takeChange()">Take</div>
-								</div>
-						</div>
-
-							<div ng-if="selectedProduct" class="row">
-								<div class="col-md-6">
-									<img class="center center-block" src="{{selectedProduct.Image}}" width="30" height="30"/>
-								</div>
-								<div class="col-md-6">
-									<div class="btn btn-default" ng-click="takeProduct()">Take</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row"></div>
-			<hr>
-			<div class="row">
-				<div class="col-xs-1">
-				<a href="http://portfoliokjvelarde.azurewebsites.net/"><img src="http://portfoliokjvelarde.azurewebsites.net/Content/images/logo.png" alt="http://portfoliokjvelarde.azurewebsites.net/" width="100px"></img></a>
-				</div>
-				<div class="col-xs-6 hidden-xs">
-					<ul class="list-group">
-				<li class="list-group-item">		<a href="http://portfoliokjvelarde.azurewebsites.net/">http://portfoliokjvelarde.azurewebsites.net/</a></li>
-				<li class="list-group-item">		<a href="www.kjvelarde.com">www.kjvelarde.com</a></li>			
-					<li class="list-group-item">		<a href="https://testamentnetwork.com">TNetwork</a></li>			
-
-				</ul>
-				</div>
-			</div>
-			
-			
-				
+    <header>
+        <h1 class="text-center">Vending Machine <span class="label label-default pointer" ng-click="changeMode()">{{mode}}</span></h1>
+    </header>
 
 
 
-					
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-body vending-bg">
+                    <div class="col-md-8 col-xs-12">
+                        <div ng-repeat="product in products">
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading text-center">
+                                        {{product.Name}} ({{product.Quantity}})
+                                    </div>
+                                    <div class="panel-body" style="{{setBackground(product.Image)}}">
+                                    </div>
+                                    <div class="panel-footer">
+                                        <span ng-if="product.Quantity > 0" class="btn btn-default center-block" ng-click="selectProduct(product)">{{product.Price  | currency}}</span>
+                                        <span ng-if="product.Quantity < 1" class="btn btn-danger center-block" disabled="disabled">SOLD OUT</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="text-center vending-status">
+                                        <!-- makes sure message from vending machine is always upper case-->
+                                        {{statusMessage | uppercase}}
+                                    </div>
+                                </div>
+                                <div class="row" ng-if="!isExactChangeOnly">
+                                    <div class="col-md-4 col-md-offset-8">
+                                        <div class="label label-warning pointer" ng-click="returnCoins()">Return</div>
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div ng-repeat="coin in coins" class="col-xs-3">
+                                        <img class="pointer" ng-src="{{coin.Image}}" width="{{coin.Width}}" height="{{coin.Height}}" ng-click="insertCoin(coin)">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-xs-12" ng-if="changes.length > 0">
+                                        <h4>Change Dispenser</h4>
+                                        <div ng-repeat="change in changes | orderBy:'Value':true" class="col-xs-1">
+                                            <img ng-src="{{change.Image}}" width="{{change.Width}}" height="{{change.Height}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-if="selectedProducts.length > 0">
+                                    <div class="col-xs-12">
+                                        <h4>Product Dispenser</h4>
+                                        <div ng-repeat="product in selectedProducts">
+                                            <div class="col-xs-6" style="{{setBackground(product.Image)}} border:solid 1pt black;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-xs-12" ng-if="changeAmount > 0">
+                                        <div class="btn btn-default" ng-click="takeChange()">Take <b>{{changeAmount | currency}}</b> Change</div>
+                                    </div>
+                                    <div class="col-xs-12" ng-if="selectedProducts.length > 0">
+                                        <div class="btn btn-default" ng-click="takeProduct()">Take <b>{{selectedProducts.length}}</b> Product(s)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="changeAmount > 0" class="row">
+                            <div class="col-md-6">
+                                Change: {{changeAmount | currency}}
+                            </div>
+
+                        </div>
 
 
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="row"></div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-1">
+            <a href="http://portfoliokjvelarde.azurewebsites.net/"><img src="http://portfoliokjvelarde.azurewebsites.net/Content/images/logo.png" alt="http://portfoliokjvelarde.azurewebsites.net/" width="100px"></img>
+            </a>
+        </div>
+        <div class="col-xs-6 hidden-xs">
+            <ul class="list-group">
+                <li class="list-group-item"> <a href="http://portfoliokjvelarde.azurewebsites.net/">http://portfoliokjvelarde.azurewebsites.net/</a></li>
+                <li class="list-group-item"> <a href="www.kjvelarde.com">www.kjvelarde.com</a></li>
+                <li class="list-group-item"> <a href="https://testamentnetwork.com">TNetwork</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
 </body>
+
 </html>

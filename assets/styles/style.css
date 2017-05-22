@@ -1,0 +1,18 @@
+.pointer {
+    cursor: pointer;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.vending-status {
+    background: #333333;
+    color: white;
+    margin: 10px;
+}
+
+.vending-bg {
+    background: #333;
+    border: 2px solid white;
+}
